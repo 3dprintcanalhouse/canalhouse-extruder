@@ -122,10 +122,14 @@ void manage_heater()
 //    if (current_pressure > 190)
     if (current_pressure > 95)
     {
-        SERIAL_ERROR_START;
-        SERIAL_ERRORLNPGM("Extruder switched off. Over Pressure triggered!!");
         LCD_ALERTMESSAGEPGM("Err: PRESSURE");
-        Stop();
+		if (millis() > 1000 * 60 * 30)
+		{
+			SERIAL_ERROR_START;
+			SERIAL_ERRORLNPGM("Extruder switched off. Over Pressure triggered!!");
+			//Do not stop for the first 30 minutes of opperation.
+			Stop();
+		}
     }
     
     if (current_temperature[0] > 150 &&
