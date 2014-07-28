@@ -219,6 +219,8 @@ static void lcd_main_menu()
     MENU_ITEM(function, MSG_PREHEAT_ABS, lcd_preheat_abs);
     MENU_ITEM(function, MSG_COOLDOWN, lcd_cooldown);
     MENU_ITEM(submenu, MSG_TEMPERATURE, lcd_control_temperature_menu);
+	MENU_ITEM(gcode, "Power On", PSTR("M80"));
+	MENU_ITEM(gcode, "Power Off", PSTR("M81"));
 #ifdef SDSUPPORT
     if (card.cardOK)
     {
